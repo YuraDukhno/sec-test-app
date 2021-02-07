@@ -59,7 +59,15 @@ export default function Coins(props) {
         <Link to="/">
           <button>Back</button>
         </Link>
-        <button onClick={() => props.addCoin(type, value)}>Update</button>
+        <button
+          onClick={() => {
+            if (props.coins.some((element) => element.type === type)) {
+              props.updateCoin(type, value);
+            } else props.addCoin(type, value);
+          }}
+        >
+          Update
+        </button>
       </div>
     </div>
   );

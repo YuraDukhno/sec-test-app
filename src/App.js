@@ -15,6 +15,19 @@ function App() {
     setCoins([{ type, value }, ...coins]);
   };
 
+  const updateCoins = (type, value) => {
+    debugger;
+    // console.log(coins);
+    let newCoins = [...coins];
+    for (let i = 0; i < newCoins.length; i++) {
+      debugger;
+      if (newCoins[i].type === type) newCoins[i].value = value;
+    }
+    setCoins(newCoins);
+
+    // setCoins(newCoins);
+  };
+
   const addExchange = (fromType, toType, fromValue, toValue, number) => {
     setExchanges([
       { fromType, toType, fromValue, toValue, number },
@@ -59,7 +72,13 @@ function App() {
             exact
             path="/Coins"
             component={() => {
-              return <Coins coins={coins} addCoin={addCoin} />;
+              return (
+                <Coins
+                  coins={coins}
+                  addCoin={addCoin}
+                  updateCoin={updateCoins}
+                />
+              );
             }}
           />
         </Switch>
